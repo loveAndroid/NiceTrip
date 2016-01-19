@@ -28,6 +28,6 @@
   学习怎样通过触控放大一个View。
 
 
-* [布局变更动画](layout.html)
+* [布局变更动画](https://github.com/loveAndroid/NiceTrip/blob/gh-pages/loveAndroid-android-training-course-in-chinese-b8cf98c/animations/index.md)
 
   学习在增加、移除或更新子View时，怎样使用内置的动画效果。
