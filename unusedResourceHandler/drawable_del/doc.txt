@@ -1,0 +1,73 @@
+FreeTrip Android 无用资源清理操作手册:
+
+#######
+
+1:   工程目录下运行 ，AndroidUnusedResources1.6.2.jar 
+		eg：java -jar AndroidUnusedResources1.6.2.jar > del.txt
+	执行完毕，会在 工程目录下 生成一个del.txt 的文本文档，包含了无用的资源列表
+2:运行doc/drawable_del目录下 FreeTripUnusedDrawable.jar
+		默认只会删除res/drawable-* 目录下的资源
+		
+		目前支持drawable ，anim  删除
+
+
+		#drawable
+		eg： java -jar FreeTripUnusedDrawable.jar 上面生成文本文档的绝对路径
+		eg： java -jar FreeTripUnusedDrawable.jar 上面生成文本文档的绝对路径 drawable
+		#anim
+		eg： java -jar FreeTripUnusedDrawable.jar 上面生成文本文档的绝对路径 anim
+	
+	
+	
+	
+	
+		
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
