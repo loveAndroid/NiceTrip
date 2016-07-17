@@ -1,0 +1,98 @@
+#1，场景切换,场景中两个View具有相同的id，会在两个View切换
+
+View root = findViewById(R.id.root);
+Scene scene1 = new Scene(root,getLayoutInflater().inflate(R.layout.layout1,root,false));//加载一个Layout ，我们的Root会把这个场景作为子元素
+Scene scene2 = new Scene(root,getLayoutInflater().inflate(R.layout.layout2,root,false));
+ChangeBounds changeBounds = new ChangeBounds();
+TransitionManager.go(scene1);
+TransitionManager.go(scene1，changeBounds);
+
+#2，改变一个View的大小
+
+View shape = findViewById(R.id.shape);
+View group = findViewById(R.id.root);
+
+void onClick(){
+ChangeBounds changeBounds = new ChangeBounds();
+changeBounds.setInterpolator(...)
+TransitionManager.beginDelayedTransition(group,changeBounds)
+setViewSize(400);
+}
+void setViewSize(int x){
+ViewGroup.Params params = shape.getLayoutParams();
+params.height = x;
+params.width = x;
+shape.setLayoutParams(params)
+}
+
+#3, Activity转场动画
+
+首先：跳转activity，
+ public void launch(AppCompatActivity activity) {
+        ActivityOptionsCompat compat =
+                ActivityOptionsCompat.makeSceneTransitionAnimation(activity,
+                        android.support.v4.util.Pair.create(view, EXTRA_IMAGE),
+                        android.support.v4.util.Pair.create(content, EXTRA_CONTENT));
+        Intent intent = new Intent(activity,DetailActivity.class);
+        ActivityCompat.startActivity(activity, intent, compat.toBundle());
+    }
+
+
+    public void launch2(AppCompatActivity activity,View transitionView){
+        Intent intent = new Intent(activity,DetailActivity.class);
+
+        ActivityOptions activityOptions = ActivityOptions.makeSceneTransitionAnimation(activity, Pair.create(transitionView, EXTRA_IMAGE));
+        startActivity(intent, activityOptions.toBundle());
+    }
+
+目标activity：
+View view = findViewById(R.id.sceneImage);
+        ViewCompat.setTransitionName(view,HomeActivity.EXTRA_IMAGE);
+
+
+
+
+### 4， ViewAnimationUtils ,
+xml attr
+ripple 触摸反馈
+,stateListAnimator 是一个selector ，item元素可以是一个动画
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
