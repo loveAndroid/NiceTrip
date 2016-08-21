@@ -21,6 +21,8 @@
 	<!-- 编译工具的目录 -->
 
 	<property name="platform-tools-folder" value="${sdk-folder}\build-tools\22.0.1" />
+	
+	<property name="zipalign-folder" value="${sdk-folder}\build-tools\22.0.1\zipalign.exe" />
 
 	<!-- aapt 命令详细的目录 -->
 
@@ -216,5 +218,14 @@
 			<arg value="ant_test" />
 			<!-- 秘钥的别名 -->
 		</exec>
+	</target>
+	<target name="zipalign" depends="sign-apk">
+		<exec executable="${zipalign-folder}" failonerror="on">
+			<arg value="-v"/>
+			<arg value="19"/>
+			<arg value="${project-dir}/bin/sign.apk" />
+			<arg value="${project-dir}/bin/final.apk" />
+		</exec>
+		
 	</target>
 </project>
