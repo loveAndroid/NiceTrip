@@ -6,7 +6,6 @@ import java.lang.reflect.Field;
 import java.util.HashSet;
 
 import android.content.Context;
-import android.util.Log;
 import dalvik.system.DexClassLoader;
 import dalvik.system.PathClassLoader;
 
