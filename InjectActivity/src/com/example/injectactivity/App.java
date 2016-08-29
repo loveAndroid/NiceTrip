@@ -1,0 +1,20 @@
+package com.example.injectactivity;
+
+import android.app.Application;
+import android.content.Context;
+
+public class App extends Application{
+
+	static Context context = null;
+	
+	@Override
+	protected void attachBaseContext(Context base) {
+		super.attachBaseContext(base);
+		context = base;
+		InjectUtils.inject(base);
+	}
+	
+	
+	
+	
+}
