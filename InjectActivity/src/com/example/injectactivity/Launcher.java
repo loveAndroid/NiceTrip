@@ -33,6 +33,7 @@ import com.example.injectactivity.util.ReflectAccelerator;
 
 public class Launcher {
 
+	private static final String STUB_PREFIX_STRING = ">";
 	private static Instrumentation sHostInstrumentation;
 	private static Instrumentation sBundleInstrumentation;
 	static Context mContext;
@@ -153,7 +154,7 @@ public class Launcher {
 				Object/* ActivityClientRecord */r = msg.obj;
 				Intent intent = ReflectAccelerator.getIntent(r);
 				ComponentName component = intent.getComponent();
-				if (isStub(component)) {
+				if (isStub(intent)) {
 					// Replace with the REAL activityInfo
 					String realClsName = unWrapIntent(intent);
 					if (TextUtils.isEmpty(realClsName))
@@ -165,27 +166,39 @@ public class Launcher {
 			}
 		}
 	}
-
 	
 	private boolean isStub(ComponentName component) {
 		return component.getClassName().equals(AAStubAct.name);
 	}
 	
+	private boolean isStub(Intent intent) {
+		if(intent == null) return false;
+		Set<String> categories = intent.getCategories();
+		if(categories != null && categories.size() > 0) {
+			for(String key : categories) {
+				if(key.startsWith(STUB_PREFIX_STRING)){
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
 	/**
-	 * by the target activity`s info i.g : intentFilter , launch mode 
+	 * by the target activity`s info i.g : intentFilter , launch mode ...
 	 * return a suitable stub activity`s name
 	 */
 	private static String getSuitableStubAct() {
 		//TODO 
 		return AAStubAct.name;
 	}
-
+	
 	/**
 	 * replace the target launch activity to a stub AA.class
 	 */
 	private static void wrapIntent(Intent intent) {
 		// real class name
-		intent.addCategory(">" + intent.getComponent().getClassName());
+		intent.addCategory(STUB_PREFIX_STRING + intent.getComponent().getClassName());
 		String stubClazz = getSuitableStubAct();
 		intent.setComponent(new ComponentName(DynamicApplication.context, stubClazz));
 	}
@@ -197,7 +210,7 @@ public class Launcher {
 		Set<String> categories = intent.getCategories();
 		if (categories != null && categories.size() > 0) {
 			for (String key : categories) {
-				if (key.startsWith(">")) {
+				if (key.startsWith(STUB_PREFIX_STRING)) {
 					categories.remove(key);
 					return key.substring(1);
 				}
@@ -211,12 +224,12 @@ public class Launcher {
 	 * Real(Plugin)
 	 */
 	private class InstrumentationWrapper extends Instrumentation implements InstrumentationInternal {
-
+		
 		private Activity mTargetAct;
-
+		
 		public InstrumentationWrapper() {
 		}
-
+		
 		/**
 		 * @Override V21+ Wrap activity from REAL to STUB
 		 */
@@ -227,7 +240,7 @@ public class Launcher {
 			return ReflectAccelerator.execStartActivity(sHostInstrumentation, who, contextThread, token, target,
 					intent, requestCode, options);
 		}
-
+		
 		/**
 		 * @Override V20- Wrap activity from REAL to STUB
 		 */
