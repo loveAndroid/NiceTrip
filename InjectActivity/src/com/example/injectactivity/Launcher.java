@@ -166,8 +166,18 @@ public class Launcher {
 		}
 	}
 
+	
 	private boolean isStub(ComponentName component) {
 		return component.getClassName().equals(AAStubAct.name);
+	}
+	
+	/**
+	 * by the target activity`s info i.g : intentFilter , launch mode 
+	 * return a suitable stub activity`s name
+	 */
+	private static String getSuitableStubAct() {
+		//TODO 
+		return AAStubAct.name;
 	}
 
 	/**
@@ -176,10 +186,10 @@ public class Launcher {
 	private static void wrapIntent(Intent intent) {
 		// real class name
 		intent.addCategory(">" + intent.getComponent().getClassName());
-		String stubClazz = AAStubAct.name;
+		String stubClazz = getSuitableStubAct();
 		intent.setComponent(new ComponentName(DynamicApplication.context, stubClazz));
 	}
-
+	
 	/**
 	 * return the real class name;
 	 */
