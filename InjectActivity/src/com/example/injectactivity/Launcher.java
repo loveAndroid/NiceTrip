@@ -153,13 +153,9 @@ public class Launcher {
 			if (msg.what != LAUNCH_ACTIVITY) {
 				return false;
 			} else {
-				// msg.what == launch_activity
-				System.out.println("msg.what == launch activity");
-
 				Object/* ActivityClientRecord */r = msg.obj;
 				Intent intent = ReflectAccelerator.getIntent(r);
 				ComponentName component = intent.getComponent();
-
 				if (component.getClassName().equals(AA.name)) {
 					// Replace with the REAL activityInfo
 					String realClsName = unWrapIntent(intent);
@@ -167,9 +163,6 @@ public class Launcher {
 						return false;
 					intent.setClassName(mPluginApk.packageName, realClsName);
 					ReflectAccelerator.setIntent(r, intent);
-
-					// reflect perf
-
 				}
 				return false;
 			}
@@ -234,14 +227,14 @@ public class Launcher {
 			return ReflectAccelerator.execStartActivity(sHostInstrumentation, who, contextThread, token, target,
 					intent, requestCode);
 		}
-
+		
 		@Override
 		/** Prepare resources for REAL */
 		public void callActivityOnCreate(Activity activity, android.os.Bundle icicle) {
 			injectResource(activity);
 			sHostInstrumentation.callActivityOnCreate(activity, icicle);
 		}
-
+		
 		@Override
 		public Activity newActivity(Class<?> clazz, Context context, IBinder token, Application application,
 				Intent intent, ActivityInfo info, CharSequence title, Activity parent, String id,
@@ -259,7 +252,7 @@ public class Launcher {
 			injectResource(newActivity);
 			return newActivity;
 		}
-
+		
 		private void injectResource(Activity activity) {
 			try {
 				if (activity != null && activity instanceof IActInject) {
@@ -279,13 +272,11 @@ public class Launcher {
 		
 		@Override
 		public void callActivityOnStop(Activity activity) {
-			System.out.println("callActivityOnStop");
 			sHostInstrumentation.callActivityOnStop(activity);
 		}
 		
 		@Override
 		public void callActivityOnDestroy(Activity activity) {
-			System.out.println("callActivityOnDestroy");
 			sHostInstrumentation.callActivityOnDestroy(activity);
 		}
 	}
