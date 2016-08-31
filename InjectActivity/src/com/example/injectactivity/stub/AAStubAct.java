@@ -8,7 +8,7 @@ import android.os.Bundle;
  */
 public class AAStubAct extends Activity {
 	
-	public static String name = "com.example.injectactivity.AAStubAct";
+	public static String name = "com.example.injectactivity.stub.AAStubAct";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
