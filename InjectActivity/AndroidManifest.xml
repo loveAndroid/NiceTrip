@@ -26,7 +26,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.injectactivity.AAStubAct" >
+        <activity android:name="com.example.injectactivity.stub.AAStubAct" >
             <intent-filter>
                 <action android:name="com.example.injectactivity.AAStubAct" />
             </intent-filter>

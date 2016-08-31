@@ -1,4 +1,4 @@
-package net.wequick.small.internal;
+package com.example.injectactivity.internal;
 
 import android.app.Activity;
 import android.app.Instrumentation;

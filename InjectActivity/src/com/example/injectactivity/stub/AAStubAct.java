@@ -1,4 +1,4 @@
-package com.example.injectactivity;
+package com.example.injectactivity.stub;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -9,7 +9,6 @@ import android.os.Bundle;
 public class AAStubAct extends Activity {
 	
 	public static String name = "com.example.injectactivity.AAStubAct";
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

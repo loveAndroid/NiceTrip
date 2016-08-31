@@ -6,7 +6,6 @@ import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Set;
 
-import net.wequick.small.internal.InstrumentationInternal;
 import android.app.Activity;
 import android.app.Application;
 import android.app.Instrumentation;
@@ -25,7 +24,9 @@ import android.os.Message;
 import android.text.TextUtils;
 
 import com.example.injectactivity.external.IActInject;
+import com.example.injectactivity.internal.InstrumentationInternal;
 import com.example.injectactivity.obj.LoadApk;
+import com.example.injectactivity.stub.AAStubAct;
 import com.example.injectactivity.util.FileUtils;
 import com.example.injectactivity.util.FixDexUtils;
 import com.example.injectactivity.util.ReflectAccelerator;
