@@ -26,9 +26,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.injectactivity.AA" >
+        <activity android:name="com.example.injectactivity.AAStubAct" >
             <intent-filter>
-                <action android:name="com.example.injectactivity.AA" />
+                <action android:name="com.example.injectactivity.AAStubAct" />
             </intent-filter>
         </activity>
     </application>

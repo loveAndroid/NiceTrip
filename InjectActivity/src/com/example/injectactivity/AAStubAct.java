@@ -6,9 +6,9 @@ import android.os.Bundle;
 /**
  * stub activity 
  */
-public class AA extends Activity {
+public class AAStubAct extends Activity {
 	
-	public static String name = "com.example.injectactivity.AA";
+	public static String name = "com.example.injectactivity.AAStubAct";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

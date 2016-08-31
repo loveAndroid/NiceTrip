@@ -168,7 +168,7 @@ public class Launcher {
 	}
 
 	private boolean isStub(ComponentName component) {
-		return component.getClassName().equals(AA.name);
+		return component.getClassName().equals(AAStubAct.name);
 	}
 
 	/**
@@ -177,7 +177,7 @@ public class Launcher {
 	private static void wrapIntent(Intent intent) {
 		// real class name
 		intent.addCategory(">" + intent.getComponent().getClassName());
-		String stubClazz = AA.name;
+		String stubClazz = AAStubAct.name;
 		intent.setComponent(new ComponentName(App.context, stubClazz));
 	}
 
