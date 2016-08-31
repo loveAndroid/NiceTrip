@@ -11,10 +11,7 @@ public class App extends Application{
 	protected void attachBaseContext(Context base) {
 		super.attachBaseContext(base);
 		context = base;
-		InjectUtils.inject(base);
+		Launcher.getInstance().launch(base);
 	}
-	
-	
-	
 	
 }

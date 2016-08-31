@@ -1,0 +1,1 @@
+首先将 assets目录先的 pluginA.apk 文件拷贝到 存储空间根目录
