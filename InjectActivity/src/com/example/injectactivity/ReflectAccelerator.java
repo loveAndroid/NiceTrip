@@ -589,7 +589,7 @@ public class ReflectAccelerator {
         arrField.set(target, sliced);
     }
 
-    private static Method getMethod(Class cls, String methodName, Class[] types) {
+    public static Method getMethod(Class cls, String methodName, Class[] types) {
         try {
             Method method = cls.getMethod(methodName, types);
             method.setAccessible(true);
@@ -599,7 +599,7 @@ public class ReflectAccelerator {
         }
     }
 
-    private static Field getDeclaredField(Class cls, String fieldName) {
+    public static Field getDeclaredField(Class cls, String fieldName) {
         try {
             Field field = cls.getDeclaredField(fieldName);
             field.setAccessible(true);
@@ -609,7 +609,7 @@ public class ReflectAccelerator {
         }
     }
 
-    private static <T> T invoke(Method method, Object target, Object... args) {
+    public static <T> T invoke(Method method, Object target, Object... args) {
         try {
             return (T) method.invoke(target, args);
         } catch (Exception e) {
@@ -619,8 +619,9 @@ public class ReflectAccelerator {
         }
     }
 
-    private static <T> T getValue(Field field, Object target) {
+    public static <T> T getValue(Field field, Object target) {
         try {
+        	field.setAccessible(true);
             return (T) field.get(target);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
@@ -628,8 +629,9 @@ public class ReflectAccelerator {
         }
     }
 
-    private static void setValue(Field field, Object target, Object value) {
+    public static void setValue(Field field, Object target, Object value) {
         try {
+        	field.setAccessible(true);
             field.set(target, value);
         } catch (IllegalAccessException e) {
             // Ignored

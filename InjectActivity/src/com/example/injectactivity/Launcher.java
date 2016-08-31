@@ -44,10 +44,8 @@ public class Launcher {
 	}
 
 	public void launch(Context context) {
-
 		mContext = context;
 		preLauncher(context);
-
 		if (sHostInstrumentation == null) {
 			try {
 				// Inject instrumentation
@@ -156,7 +154,7 @@ public class Launcher {
 				Object/* ActivityClientRecord */r = msg.obj;
 				Intent intent = ReflectAccelerator.getIntent(r);
 				ComponentName component = intent.getComponent();
-				if (component.getClassName().equals(AA.name)) {
+				if (isStub(component)) {
 					// Replace with the REAL activityInfo
 					String realClsName = unWrapIntent(intent);
 					if (TextUtils.isEmpty(realClsName))
@@ -167,6 +165,10 @@ public class Launcher {
 				return false;
 			}
 		}
+	}
+
+	private boolean isStub(ComponentName component) {
+		return component.getClassName().equals(AA.name);
 	}
 
 	/**
@@ -227,24 +229,24 @@ public class Launcher {
 			return ReflectAccelerator.execStartActivity(sHostInstrumentation, who, contextThread, token, target,
 					intent, requestCode);
 		}
-		
+
 		@Override
 		/** Prepare resources for REAL */
 		public void callActivityOnCreate(Activity activity, android.os.Bundle icicle) {
 			injectResource(activity);
 			sHostInstrumentation.callActivityOnCreate(activity, icicle);
 		}
-		
+
 		@Override
 		public Activity newActivity(Class<?> clazz, Context context, IBinder token, Application application,
 				Intent intent, ActivityInfo info, CharSequence title, Activity parent, String id,
 				Object lastNonConfigurationInstance) throws InstantiationException, IllegalAccessException {
-			Activity newActivity = super.newActivity(clazz, context, token, application, intent, info, title, parent, id,
-							lastNonConfigurationInstance);
+			Activity newActivity = super.newActivity(clazz, context, token, application, intent, info, title, parent,
+					id, lastNonConfigurationInstance);
 			injectResource(newActivity);
 			return newActivity;
 		}
-		
+
 		@Override
 		public Activity newActivity(ClassLoader cl, String className, Intent intent) throws InstantiationException,
 				IllegalAccessException, ClassNotFoundException {
@@ -252,7 +254,7 @@ public class Launcher {
 			injectResource(newActivity);
 			return newActivity;
 		}
-		
+
 		private void injectResource(Activity activity) {
 			try {
 				if (activity != null && activity instanceof IActInject) {
@@ -269,12 +271,12 @@ public class Launcher {
 				e.printStackTrace();
 			}
 		}
-		
+
 		@Override
 		public void callActivityOnStop(Activity activity) {
 			sHostInstrumentation.callActivityOnStop(activity);
 		}
-		
+
 		@Override
 		public void callActivityOnDestroy(Activity activity) {
 			sHostInstrumentation.callActivityOnDestroy(activity);
