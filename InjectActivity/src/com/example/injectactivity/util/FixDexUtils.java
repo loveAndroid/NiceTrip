@@ -5,7 +5,6 @@ import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.util.HashSet;
 
-import com.example.injectactivity.ReflectAccelerator;
 
 import android.content.Context;
 import dalvik.system.DexClassLoader;

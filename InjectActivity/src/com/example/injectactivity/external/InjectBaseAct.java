@@ -1,4 +1,4 @@
-package com.example.injectactivity;
+package com.example.injectactivity.external;
 
 import android.app.Activity;
 import android.content.res.AssetManager;

@@ -14,7 +14,7 @@
  * under the License.
  */
 
-package com.example.injectactivity;
+package com.example.injectactivity.util;
 
 import java.io.File;
 import java.io.IOException;

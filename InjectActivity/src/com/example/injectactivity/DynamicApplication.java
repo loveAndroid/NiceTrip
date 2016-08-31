@@ -3,7 +3,7 @@ package com.example.injectactivity;
 import android.app.Application;
 import android.content.Context;
 
-public class App extends Application{
+public class DynamicApplication extends Application{
 
 	static Context context = null;
 	

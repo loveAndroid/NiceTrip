@@ -24,8 +24,11 @@ import android.os.IBinder;
 import android.os.Message;
 import android.text.TextUtils;
 
+import com.example.injectactivity.external.IActInject;
+import com.example.injectactivity.obj.LoadApk;
 import com.example.injectactivity.util.FileUtils;
 import com.example.injectactivity.util.FixDexUtils;
+import com.example.injectactivity.util.ReflectAccelerator;
 
 public class Launcher {
 
@@ -118,27 +121,22 @@ public class Launcher {
 
 	private void inject(Context context, File pluginFile, LoadApk loadApk) {
 		String sourceFile = pluginFile.getAbsolutePath();
-		// 系统的私有目录
 		String targetFileDir = context.getDir("odex_", Context.MODE_PRIVATE).getAbsolutePath();
 		String targetFileName = targetFileDir + File.separator + pluginFile.getName();
 		File file = new File(targetFileDir, pluginFile.getName());
 		try {
-			// 复制文件到私有目录
 			FileUtils.copyFile(sourceFile, targetFileName);
-			// 加载.dex文件
 			FixDexUtils.loadFixDex(context, file);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
-		// 加载资源
 		AssetManager pluginAssetManager = ReflectAccelerator.newAssetManager();
 		ReflectAccelerator.addAssetPath(pluginAssetManager, targetFileName);
 
 		loadApk.assetManager = pluginAssetManager;
 		loadApk.dexPath = file.getAbsolutePath();
 		loadApk.dexPath = targetFileName;
-
 		this.mPluginApk = loadApk;
 	}
 
@@ -178,7 +176,7 @@ public class Launcher {
 		// real class name
 		intent.addCategory(">" + intent.getComponent().getClassName());
 		String stubClazz = AAStubAct.name;
-		intent.setComponent(new ComponentName(App.context, stubClazz));
+		intent.setComponent(new ComponentName(DynamicApplication.context, stubClazz));
 	}
 
 	/**
