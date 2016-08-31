@@ -4,11 +4,14 @@ import android.app.Activity;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
 
-public class InjectBaseAct extends Activity implements IActInject {
+/**
+ * default class for plugin activity
+ */
+public abstract class InjectBaseAct extends Activity implements IActInject {
 
 	private Resources mResources;
 	private AssetManager mAssetManager;
-
+	
 	@Override
 	public void setResources(Resources resources, AssetManager assetManager) {
 		this.mResources = resources;

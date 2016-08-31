@@ -1,0 +1,44 @@
+
+
+feature：----------------------------------------------
+支持apk动态加载，调起指定位置的apk文件
+对插件影响最小，插件可以独立安装，调试，甚至发布。
+插件间以及插件和host资源隔离
+
+
+used --------------------------------------------------
+-重写application 继承 DynamicApplication
+-作为插件的 apk 要实现  com.example.injectactivity.external package下的IActInject 接口，
+  默认实现类 为 InjectBaseActivity ，插件的activity要实现此抽象类，即可开发使用。
+
+DONE --------------------------------------
+activity生命周期回调
+apk资源加载
+
+
+TODO -------------------------------------------
+1，支持多个plugin apk的加载
+2，为要动态加载的activity提供合适的stubActivity
+3，提供插件访问host文件，比如偏好
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

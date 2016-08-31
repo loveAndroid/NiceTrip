@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 
 /**
- * stub activity 
+ * stub activity , standard activity
  */
 public class AAStubAct extends Activity {
 	
