@@ -22,7 +22,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		// load the apk which is in file system
 		try {
 			Intent intent = new Intent();
-			intent.setClassName(getPackageName(), Launcher.getInstance().mPluginApk.mainActivity.name);
+			intent.setClassName(getPackageName(), Launcher.getInstance().getLoadApks().get(0).mainActivity.name);
 			Bundle extras = new Bundle();
 			extras.putBoolean("b", false);
 			intent.putExtras(extras);
