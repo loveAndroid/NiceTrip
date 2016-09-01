@@ -27,5 +27,10 @@ public abstract class InjectBaseAct extends Activity implements IActInject {
 	public AssetManager getAssets() {
 		return mAssetManager == null ? super.getAssets() : mAssetManager;
 	}
+	
+	@Override
+	public String getPackageName() {
+		return super.getPackageName();
+	}
 
 }

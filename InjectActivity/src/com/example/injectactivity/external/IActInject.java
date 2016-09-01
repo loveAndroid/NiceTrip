@@ -8,5 +8,5 @@ import android.content.res.Resources;
  */
 public interface IActInject {
 	void setResources(Resources resources,AssetManager assetManager);
-//	String getPackageName();
+	String getPackageName();
 }
