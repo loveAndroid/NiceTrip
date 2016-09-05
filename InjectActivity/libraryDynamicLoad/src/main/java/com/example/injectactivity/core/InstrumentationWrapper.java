@@ -31,14 +31,13 @@ import com.example.injectactivity.util.ReflectAccelerator;
  */
 public class InstrumentationWrapper extends Instrumentation implements InstrumentationInternal {
 
-	private Activity mTargetAct;
 	private Instrumentation sHostInstrumentation;
 	private static List<LoadApk> mLoadApks;
 	private Context mContext;
 	private Instrumentation sBundleInstrumentation;
 
-	public InstrumentationWrapper(List<LoadApk> mLoadApks, Instrumentation sHostInstrumentation, Context context) {
-		this.mLoadApks = mLoadApks;
+	public InstrumentationWrapper(Instrumentation sHostInstrumentation, Context context) {
+		this.mLoadApks = Launcher.getInstance().getLoadApks();
 		this.sHostInstrumentation = sHostInstrumentation;
 		this.mContext = context;
 	}
@@ -51,7 +50,6 @@ public class InstrumentationWrapper extends Instrumentation implements Instrumen
 	 */
 	public ActivityResult execStartActivity(Context who, IBinder contextThread, IBinder token, Activity target,
 			Intent intent, int requestCode, android.os.Bundle options) {
-		this.mTargetAct = target;
 		wrapIntent(intent);
 		return ReflectAccelerator.execStartActivity(sHostInstrumentation, who, contextThread, token, target, intent,
 				requestCode, options);
@@ -62,7 +60,6 @@ public class InstrumentationWrapper extends Instrumentation implements Instrumen
 	 */
 	public ActivityResult execStartActivity(Context who, IBinder contextThread, IBinder token, Activity target,
 			Intent intent, int requestCode) {
-		this.mTargetAct = target;
 		wrapIntent(intent);
 		return ReflectAccelerator.execStartActivity(sHostInstrumentation, who, contextThread, token, target, intent,
 				requestCode);
@@ -100,9 +97,9 @@ public class InstrumentationWrapper extends Instrumentation implements Instrumen
 				if(activity.getResources() == null) {
 					LoadApk mPluginApk = getTargetApk(activity);
 					if (mPluginApk != null && mPluginApk.resources == null) {
-						Resources resources = mTargetAct.getResources();
-						Resources pluginResources = new Resources(mPluginApk.assetManager, resources.getDisplayMetrics(),
-								resources.getConfiguration());
+						Resources superResources = this.mContext.getResources();
+						Resources pluginResources = new Resources(mPluginApk.assetManager, superResources.getDisplayMetrics(),
+								superResources.getConfiguration());
 						mPluginApk.resources = pluginResources;
 					}
 					Method setPluginResources = activity.getClass().getMethod("setPluginResources", Resources.class, AssetManager.class);
@@ -133,8 +130,7 @@ public class InstrumentationWrapper extends Instrumentation implements Instrumen
         }
 	}
 
-	private LoadApk getTargetApk(Activity actInject) {
-		String packageName = getTargetPkgName(actInject);
+	private LoadApk getTargetApk(String packageName) {
 		if (mLoadApks != null && mLoadApks.size() > 0) {
 			for (int i = 0 ;i < mLoadApks.size();i++) {
 				LoadApk loadApk  = mLoadApks.get(i);
@@ -146,6 +142,14 @@ public class InstrumentationWrapper extends Instrumentation implements Instrumen
 		return null;
 	}
 
+	private LoadApk getTargetApk(Activity actInject) {
+		String packageName = getTargetPkgName(actInject);
+		return getTargetApk(packageName);
+	}
+
+	/**
+	 * reflect the method getPluginPkgName to get the load apks package name
+	 */
 	private String getTargetPkgName(Activity actInject) {
 		try {
 			Method pkgNameMethod = actInject.getClass().getMethod("getPluginPkgName");
@@ -155,16 +159,6 @@ public class InstrumentationWrapper extends Instrumentation implements Instrumen
 			e.printStackTrace();
 		}
 		return null;
-	}
-
-	@Override
-	public void callActivityOnStop(Activity activity) {
-		sHostInstrumentation.callActivityOnStop(activity);
-	}
-
-	@Override
-	public void callActivityOnDestroy(Activity activity) {
-		sHostInstrumentation.callActivityOnDestroy(activity);
 	}
 
 	/**
