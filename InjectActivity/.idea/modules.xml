@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/InjectActivity.iml" filepath="$PROJECT_DIR$/InjectActivity.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libraryDynamicLoad/libraryDynamicLoad.iml" filepath="$PROJECT_DIR$/libraryDynamicLoad/libraryDynamicLoad.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pluginA/pluginA.iml" filepath="$PROJECT_DIR$/pluginA/pluginA.iml" />
+    </modules>
+  </component>
+</project>
