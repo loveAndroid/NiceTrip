@@ -15,7 +15,23 @@ public class MainActivity extends Activity implements OnClickListener {
 		setContentView(R.layout.activity_main);
 
 		findViewById(R.id.mainTv).setOnClickListener(this);
+		
+//		findViewById(R.id.mainTv).setOnClickListener(bottomListener);
 	}
+	
+	OnClickListener bottomListener = new OnClickListener() {
+		
+		@Override
+		public void onClick(View v) {
+			Intent intent = new Intent();
+			intent.setClassName(getPackageName(), Launcher.getInstance().mPluginApk.mainActivity.name);
+			Bundle extras = new Bundle();
+			extras.putBoolean("b", false);
+			intent.putExtras(extras);
+//			startActivity(intent);
+			startActivityForResult(intent, 0);
+		}
+	};
 
 	@Override
 	public void onClick(View v) {
