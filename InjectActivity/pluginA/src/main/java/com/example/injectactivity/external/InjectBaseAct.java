@@ -16,18 +16,15 @@ public abstract class InjectBaseAct extends Activity implements IActInject {
 	public void setPluginResources(Resources resources, AssetManager assetManager) {
 		this.mResources = resources;
 		this.mAssetManager = assetManager;
-		System.out.println("host ... setPluginResources = " + (resources == null) + " , " + (assetManager == null));
 	}
 
 	@Override
 	public Resources getResources() {
-		System.out.println("host ... getResources = " + (mResources == null));
 		return mResources;
 	}
 
 	@Override
 	public AssetManager getAssets() {
-		System.out.println("host ... getAssets = " + (mAssetManager == null));
 		return mAssetManager;
 	}
 	

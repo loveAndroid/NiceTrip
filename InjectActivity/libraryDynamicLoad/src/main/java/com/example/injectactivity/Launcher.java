@@ -48,7 +48,7 @@ public class Launcher {
 				Field field = activityThreadClass.getDeclaredField("mInstrumentation");
 				field.setAccessible(true);
 				sHostInstrumentation = (Instrumentation) field.get(thread);
-				InstrumentationWrapper wrapper = new InstrumentationWrapper(mLoadApks,sHostInstrumentation,context);
+				InstrumentationWrapper wrapper = new InstrumentationWrapper(sHostInstrumentation,context);
 				field.set(thread, wrapper);
 				if (!sHostInstrumentation.getClass().getName().equals("android.app.Instrumentation")) {
 					sBundleInstrumentation = wrapper; // record for later
