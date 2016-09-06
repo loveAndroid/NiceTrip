@@ -1,6 +1,7 @@
 package com.example.injectactivity.core;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Set;
@@ -40,9 +41,6 @@ public class InstrumentationWrapper extends Instrumentation implements Instrumen
 		this.mLoadApks = Launcher.getInstance().getLoadApks();
 		this.sHostInstrumentation = sHostInstrumentation;
 		this.mContext = context;
-	}
-
-	public InstrumentationWrapper() {
 	}
 
 	/**
@@ -89,24 +87,26 @@ public class InstrumentationWrapper extends Instrumentation implements Instrumen
 	}
 
 	private void injectResource(Activity activity) {
-
 		checkInstrumentation(activity);
-
 		try {
 			if (activity != null && activity instanceof IActInject) {
 				if(activity.getResources() == null) {
 					LoadApk mPluginApk = getTargetApk(activity);
-					if (mPluginApk != null) {
-						Method setPluginResources = activity.getClass().getMethod("setPluginResources", Resources.class, AssetManager.class);
-						setPluginResources.setAccessible(true);
-						setPluginResources.invoke(activity, mPluginApk.resources, mPluginApk.assetManager);
-					}
+					realInject(activity, mPluginApk);
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("injectResource exceptipn = " + e.getMessage());
 		}
+	}
+
+	private void realInject(Activity activity, LoadApk mPluginApk) throws Exception {
+		if (mPluginApk != null) {
+            Method setPluginResources = activity.getClass().getMethod("setPluginResources", Resources.class, AssetManager.class);
+            setPluginResources.setAccessible(true);
+//            setPluginResources.invoke(activity, mPluginApk.resources, mPluginApk.assetManager);
+			ReflectAccelerator.invoke(setPluginResources,activity,mPluginApk.resources, mPluginApk.assetManager);
+        }
 	}
 
 	private void checkInstrumentation(Activity activity) {
@@ -149,8 +149,9 @@ public class InstrumentationWrapper extends Instrumentation implements Instrumen
 	private String getTargetPkgName(Activity actInject) {
 		try {
 			Method pkgNameMethod = actInject.getClass().getMethod("getPluginPkgName");
-			Object invoke = pkgNameMethod.invoke(actInject);
-			return invoke.toString();
+//			Object invoke = pkgNameMethod.invoke(actInject);
+			return ReflectAccelerator.invoke(pkgNameMethod,actInject).toString();
+//			return invoke.toString();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
