@@ -81,6 +81,5 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 23 Platform (1)" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="universal-image-loader-1.9.1-with-sources" level="project" />
   </component>
 </module>

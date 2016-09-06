@@ -19,5 +19,4 @@ android {
 }
 
 dependencies {
-    compile files('libs/universal-image-loader-1.9.1-with-sources.jar')
 }

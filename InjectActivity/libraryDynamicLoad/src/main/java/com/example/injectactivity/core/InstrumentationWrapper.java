@@ -89,15 +89,22 @@ public class InstrumentationWrapper extends Instrumentation implements Instrumen
 	private void injectResource(Activity activity) {
 		checkInstrumentation(activity);
 		try {
-			if (activity != null && activity instanceof IActInject) {
-				if(activity.getResources() == null) {
-					LoadApk mPluginApk = getTargetApk(activity);
-					realInject(activity, mPluginApk);
-				}
+			if(validate(activity)) {
+				LoadApk mPluginApk = getTargetApk(activity);
+				realInject(activity, mPluginApk);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	private boolean validate(Activity activity){
+		if (activity != null && activity instanceof IActInject) {
+			if(activity.getResources() == null) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	private void realInject(Activity activity, LoadApk mPluginApk) throws Exception {
