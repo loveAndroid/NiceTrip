@@ -96,15 +96,11 @@ public class InstrumentationWrapper extends Instrumentation implements Instrumen
 			if (activity != null && activity instanceof IActInject) {
 				if(activity.getResources() == null) {
 					LoadApk mPluginApk = getTargetApk(activity);
-					if (mPluginApk != null && mPluginApk.resources == null) {
-						Resources superResources = this.mContext.getResources();
-						Resources pluginResources = new Resources(mPluginApk.assetManager, superResources.getDisplayMetrics(),
-								superResources.getConfiguration());
-						mPluginApk.resources = pluginResources;
+					if (mPluginApk != null) {
+						Method setPluginResources = activity.getClass().getMethod("setPluginResources", Resources.class, AssetManager.class);
+						setPluginResources.setAccessible(true);
+						setPluginResources.invoke(activity, mPluginApk.resources, mPluginApk.assetManager);
 					}
-					Method setPluginResources = activity.getClass().getMethod("setPluginResources", Resources.class, AssetManager.class);
-					setPluginResources.setAccessible(true);
-					setPluginResources.invoke(activity, mPluginApk.resources, mPluginApk.assetManager);
 				}
 			}
 		} catch (Exception e) {

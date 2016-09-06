@@ -20,11 +20,11 @@ public abstract class InjectBaseAct extends Activity implements IActInject {
 
 	@Override
 	public Resources getResources() {
-		return mResources;
+		return mResources == null ? super.getResources() : mResources;
 	}
 
 	@Override
 	public AssetManager getAssets() {
-		return mAssetManager;
+		return mAssetManager == null ? super.getAssets() : mAssetManager;
 	}
 }

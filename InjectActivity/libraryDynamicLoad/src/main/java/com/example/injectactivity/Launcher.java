@@ -20,6 +20,7 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
+import android.content.res.Resources;
 import android.os.Environment;
 import android.os.Handler;
 
@@ -127,10 +128,15 @@ public class Launcher {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
+		//instance assetManager
 		AssetManager pluginAssetManager = ReflectAccelerator.newAssetManager();
 		ReflectAccelerator.addAssetPath(pluginAssetManager, targetFileName);
+		//instance resource
+		Resources superResources = context.getResources();
+		Resources pluginResources = new Resources(pluginAssetManager, superResources.getDisplayMetrics(),
+				superResources.getConfiguration());
 
+		loadApk.resources = pluginResources;
 		loadApk.assetManager = pluginAssetManager;
 		loadApk.dexPath = file.getAbsolutePath();
 		loadApk.dexPath = targetFileName;
