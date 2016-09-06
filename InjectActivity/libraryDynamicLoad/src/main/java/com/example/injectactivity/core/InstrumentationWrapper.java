@@ -104,7 +104,6 @@ public class InstrumentationWrapper extends Instrumentation implements Instrumen
 		if (mPluginApk != null) {
             Method setPluginResources = activity.getClass().getMethod("setPluginResources", Resources.class, AssetManager.class);
             setPluginResources.setAccessible(true);
-//            setPluginResources.invoke(activity, mPluginApk.resources, mPluginApk.assetManager);
 			ReflectAccelerator.invoke(setPluginResources,activity,mPluginApk.resources, mPluginApk.assetManager);
         }
 	}
@@ -149,9 +148,7 @@ public class InstrumentationWrapper extends Instrumentation implements Instrumen
 	private String getTargetPkgName(Activity actInject) {
 		try {
 			Method pkgNameMethod = actInject.getClass().getMethod("getPluginPkgName");
-//			Object invoke = pkgNameMethod.invoke(actInject);
 			return ReflectAccelerator.invoke(pkgNameMethod,actInject).toString();
-//			return invoke.toString();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

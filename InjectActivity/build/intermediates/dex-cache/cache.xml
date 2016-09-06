@@ -1,12 +1,3 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" >
+<items version="2" />
 
-    <item
-        jar="C:\Users\Kongxs\Desktop\NiceTrip\InjectActivity\libraryDynamicLoad\libs\universal-image-loader-1.9.1-with-sources.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="d2a1c7db3817af8381daa80201bc549be3e884c5">
-        <dex dex="C:\Users\Kongxs\Desktop\NiceTrip\InjectActivity\libraryDynamicLoad\build\intermediates\pre-dexed\debug\universal-image-loader-1.9.1-with-sources_19b8ac28ae0e540384e34931b03baac2b968678f.jar" />
-    </item>
-
-</items>

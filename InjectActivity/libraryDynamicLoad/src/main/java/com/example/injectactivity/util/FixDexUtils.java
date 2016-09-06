@@ -10,12 +10,6 @@ import android.content.Context;
 import dalvik.system.DexClassLoader;
 import dalvik.system.PathClassLoader;
 
-/**
- * 动态加载补丁包
- * 
- * @author alex_mahao
- * 
- */
 public class FixDexUtils {
 
 	public static void loadFixDex(Context context, File targetFile) {
