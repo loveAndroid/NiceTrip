@@ -1,4 +1,4 @@
-package com.example.injectactivity.internal;
+package azir.dynamic.load.internal;
 
 import android.app.Activity;
 import android.app.Instrumentation;

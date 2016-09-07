@@ -1,21 +1,14 @@
 package com.example.injectplugin.module;
 
-import android.app.Activity;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.injectactivity.external.InjectBaseAct;
+import azir.dynamic.load.external.InjectBaseAct;
+import azir.dynamic.load.external.PluginAccessAble;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 import java.lang.reflect.Method;
-import java.util.List;
 
 public class MainActivity extends InjectBaseAct {
 
@@ -27,19 +20,20 @@ public class MainActivity extends InjectBaseAct {
         ImageLoaderConfiguration configuration = ImageLoaderConfiguration.createDefault(this);
         ImageLoader.getInstance().init(configuration);
 
-//        try {
-//            Class<?> launcherClazz = Class.forName("com.example.injectactivity.Launcher");
-//            Method methodInstance = launcherClazz.getMethod("getInstance", new Class[0]);
-//            Object objLauncher = methodInstance.invoke(null, new Object[0]);
-//
-//            Method getLoadApks = launcherClazz.getMethod("getLoadApks", new Class[0]);
-//            List loadApks = (List) getLoadApks.invoke(objLauncher, new Object[0]);
-//
-//            Toast.makeText(this,"size = " + loadApks.size(), Toast.LENGTH_LONG).show();
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+        try {
+            Class<?> aClass = Class.forName("azir.dynamic.load.external.impl.PluginAccessAbleImpl");
+            Object obj = aClass.newInstance();
+            Method getPluginAccessAbleImpl = aClass.getMethod("getInstance");
+            Object invoke = getPluginAccessAbleImpl.invoke(obj);
+
+            if (invoke != null && invoke instanceof PluginAccessAble) {
+                PluginAccessAble accessAble = (PluginAccessAble) invoke;
+                String userName = accessAble.getUserName();
+                Toast.makeText(this,"name = " + userName,Toast.LENGTH_LONG).show();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
     }

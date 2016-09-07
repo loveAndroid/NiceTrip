@@ -1,4 +1,4 @@
-package com.example.injectactivity.util;
+package azir.dynamic.load.util;
 
 import java.io.File;
 import java.io.FileInputStream;

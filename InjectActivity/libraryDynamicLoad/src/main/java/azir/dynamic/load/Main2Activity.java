@@ -1,4 +1,4 @@
-package com.example.injectactivity;
+package azir.dynamic.load;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -8,6 +8,6 @@ public class Main2Activity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
+        setContentView(com.example.injectactivity.R.layout.activity_main2);
     }
 }

@@ -1,4 +1,4 @@
-package com.example.injectactivity.stub;
+package azir.dynamic.load.stub;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -8,7 +8,7 @@ import android.os.Bundle;
  */
 public class AAStubAct extends Activity {
 	
-	public static String name = "com.example.injectactivity.stub.AAStubAct";
+	public static String name = "azir.dynamic.load.stub.AAStubAct";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

@@ -1,7 +1,6 @@
-package com.example.injectactivity.core;
+package azir.dynamic.load.core;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Set;
@@ -20,12 +19,12 @@ import android.os.IBinder;
 import android.os.Message;
 import android.text.TextUtils;
 
-import com.example.injectactivity.Launcher;
-import com.example.injectactivity.external.IActInject;
-import com.example.injectactivity.internal.InstrumentationInternal;
-import com.example.injectactivity.obj.LoadApk;
-import com.example.injectactivity.stub.AAStubAct;
-import com.example.injectactivity.util.ReflectAccelerator;
+import azir.dynamic.load.Launcher;
+import azir.dynamic.load.external.IActInject;
+import azir.dynamic.load.internal.InstrumentationInternal;
+import azir.dynamic.load.obj.LoadApk;
+import azir.dynamic.load.stub.AAStubAct;
+import azir.dynamic.load.util.ReflectAccelerator;
 
 /**
  * Class for redirect activity from Stub(AndroidManifest.xml) to Real(Plugin)

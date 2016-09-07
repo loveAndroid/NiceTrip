@@ -1,4 +1,4 @@
-package com.example.injectactivity;
+package azir.dynamic.load;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -12,16 +12,16 @@ public class MainActivity extends Activity implements OnClickListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		setContentView(com.example.injectactivity.R.layout.activity_main);
 
 		Launcher.getInstance().launch(this);
 		
 
-		findViewById(R.id.mainTv).setOnClickListener(this);
+		findViewById(com.example.injectactivity.R.id.mainTv).setOnClickListener(this);
 		
-		findViewById(R.id.mainTv2).setOnClickListener(bottomListener);
+		findViewById(com.example.injectactivity.R.id.mainTv2).setOnClickListener(bottomListener);
 
-		findViewById(R.id.mainTv3).setOnClickListener(main3click);
+		findViewById(com.example.injectactivity.R.id.mainTv3).setOnClickListener(main3click);
 
 	}
 

@@ -1,4 +1,4 @@
-package com.example.injectactivity.obj;
+package azir.dynamic.load.obj;
 
 import java.util.HashMap;
 
@@ -12,7 +12,6 @@ import android.content.res.Resources;
 public class LoadApk {
 	public String packageName;
 	public String sourcePath;
-//	public String destPath;
 	public String dexPath;
 	public AssetManager assetManager;
 	public Resources resources;

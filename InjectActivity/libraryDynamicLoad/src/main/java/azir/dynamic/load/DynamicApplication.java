@@ -1,4 +1,4 @@
-package com.example.injectactivity;
+package azir.dynamic.load;
 
 import android.app.Application;
 import android.content.Context;

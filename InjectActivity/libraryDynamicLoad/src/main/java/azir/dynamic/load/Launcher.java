@@ -1,4 +1,4 @@
-package com.example.injectactivity;
+package azir.dynamic.load;
 
 import java.io.File;
 import java.io.IOException;
@@ -7,11 +7,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import com.example.injectactivity.core.InstrumentationWrapper;
-import com.example.injectactivity.obj.LoadApk;
-import com.example.injectactivity.util.FileUtils;
-import com.example.injectactivity.util.FixDexUtils;
-import com.example.injectactivity.util.ReflectAccelerator;
+import azir.dynamic.load.core.InstrumentationWrapper;
+import azir.dynamic.load.obj.LoadApk;
+import azir.dynamic.load.util.FileUtils;
+import azir.dynamic.load.util.FixDexUtils;
+import azir.dynamic.load.util.ReflectAccelerator;
 
 import android.app.Activity;
 import android.app.Instrumentation;
