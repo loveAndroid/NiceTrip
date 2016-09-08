@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/InjectActivity.iml" filepath="$PROJECT_DIR$/InjectActivity.iml" />
-      <module fileurl="file://$PROJECT_DIR$/libraryDynamicLoad/libraryDynamicLoad.iml" filepath="$PROJECT_DIR$/libraryDynamicLoad/libraryDynamicLoad.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Library_public/Library_public.iml" filepath="$PROJECT_DIR$/Library_public/Library_public.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Sample/Sample.iml" filepath="$PROJECT_DIR$/Sample/Sample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
       <module fileurl="file://$PROJECT_DIR$/pluginA/pluginA.iml" filepath="$PROJECT_DIR$/pluginA/pluginA.iml" />
     </modules>
   </component>

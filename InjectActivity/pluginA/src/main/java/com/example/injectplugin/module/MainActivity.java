@@ -10,7 +10,7 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 import java.lang.reflect.Method;
 
-public class MainActivity extends InjectBaseAct {
+public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +23,8 @@ public class MainActivity extends InjectBaseAct {
         try {
             Class<?> aClass = Class.forName("azir.dynamic.load.external.impl.PluginAccessAbleImpl");
             Object obj = aClass.newInstance();
-            Method getPluginAccessAbleImpl = aClass.getMethod("getInstance");
+            Method getPluginAccessAbleImpl = aClass.getDeclaredMethod("getInstance");
+            getPluginAccessAbleImpl.setAccessible(true);
             Object invoke = getPluginAccessAbleImpl.invoke(obj);
 
             if (invoke != null && invoke instanceof PluginAccessAble) {

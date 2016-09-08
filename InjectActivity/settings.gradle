@@ -1,1 +1,1 @@
-include ':libraryDynamicLoad', ':pluginA'
+include ':Sample', ':pluginA', ':Library_public', ':library'
