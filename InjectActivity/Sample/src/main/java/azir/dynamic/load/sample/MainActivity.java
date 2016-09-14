@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Toast;
 
+import com.example.small.clipbord.BinderHookHelper;
+
 import azir.dynamic.load.Launcher;
 
 public class MainActivity extends Activity implements OnClickListener {
@@ -26,7 +28,12 @@ public class MainActivity extends Activity implements OnClickListener {
 	private OnClickListener main3click = new OnClickListener() {
 		@Override
 		public void onClick(View v) {
-			startActivity(new Intent(MainActivity.this,Main2Activity.class));
+//			startActivity(new Intent(MainActivity.this,Main2Activity.class));
+			try {
+				BinderHookHelper.hook(getApplicationContext());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	};
 	

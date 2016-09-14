@@ -23,9 +23,11 @@ public class BinderHookHelper {
         SystemContextHook hook = new SystemContextHook(o);
         Object proxyContextImpl = hook.getProxy(o.getClass());
         System.out.println("proxyContextImpl = " + proxyContextImpl);
-        
-        
-//        systemContextField.set(thread,proxyContextImpl);
+
+
+        Field mSystemContext = activityThreadClass.getField("mSystemContext");
+        mSystemContext.setAccessible(true);
+        mSystemContext.set(thread,proxyContextImpl);
     }
     
     public static Object getActivityThread(Context context, Class<?> activityThread) {

@@ -40,9 +40,10 @@ public class SystemContextHook implements MethodInterceptor {
         return method.invoke(mObj, args);
     }
 
-    private Enhancer enhancer = new Enhancer();
+
 
     public Object getProxy(Class<?> clazz) {
+        Enhancer enhancer = new Enhancer();
         enhancer.setSuperclass(clazz);
         enhancer.setCallback(this);
         return enhancer.create();
