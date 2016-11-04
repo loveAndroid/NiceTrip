@@ -9,7 +9,11 @@ import android.widget.Toast;
 
 import com.example.small.clipbord.BinderHookHelper;
 
+import java.io.IOException;
+import java.util.Enumeration;
+
 import azir.dynamic.load.Launcher;
+import dalvik.system.DexFile;
 
 public class MainActivity extends Activity implements OnClickListener {
 
@@ -18,7 +22,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		findViewById(R.id.mainTv).setOnClickListener(this);
-		
+
 		findViewById(R.id.mainTv2).setOnClickListener(bottomListener);
 
 		findViewById(R.id.mainTv3).setOnClickListener(main3click);
@@ -28,12 +32,12 @@ public class MainActivity extends Activity implements OnClickListener {
 	private OnClickListener main3click = new OnClickListener() {
 		@Override
 		public void onClick(View v) {
-//			startActivity(new Intent(MainActivity.this,Main2Activity.class));
-			try {
-				BinderHookHelper.hook(getApplicationContext());
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			startActivity(new Intent(MainActivity.this,Main2Activity.class));
+//			try {
+//				BinderHookHelper.hook(getApplicationContext());
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
 		}
 	};
 	

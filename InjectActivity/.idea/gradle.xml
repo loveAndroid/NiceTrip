@@ -15,15 +15,7 @@
             <option value="$PROJECT_DIR$/pluginA" />
           </set>
         </option>
-        <option name="myModules">
-          <set>
-            <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/Library_public" />
-            <option value="$PROJECT_DIR$/Sample" />
-            <option value="$PROJECT_DIR$/library" />
-            <option value="$PROJECT_DIR$/pluginA" />
-          </set>
-        </option>
+        <option name="resolveModulePerSourceSet" value="false" />
       </GradleProjectSettings>
     </option>
   </component>
