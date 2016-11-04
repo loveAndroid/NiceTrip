@@ -11,3 +11,28 @@ listview 的复用机制,不同类型，大小的ItemView如何做到复用
 数据结构，多线程，消息模型，设计模式，图片缓存，网络请求，自定义控件，事件分发
 
 material design
+
+
+
+数据结构和算法 《啊哈！算法》，《算法导论》，《算法》，《大话数据结构》
+设计模式		《设计模式之禅》
+多线程和并发编程 《java并发编程实战》，《多线程编程的艺术》
+
+构建工具：gradle ，maven
+版本控制工具：git，svn
+
+
+脚本工具：python
+
+
+数据库 ： jdbc，mysql，mybatis，hibernate，并发缓存，mongdb
+
+缓存：redis
+
+
+spring3
+ springmvc
+ springBoot
+ struts2
+
+分布式，中间件
